@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--css file-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-32x32.png') }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-16x16.png') }}" sizes="16x16">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="mask-icon" href="{{ url_for('static', filename='safari-pinned-tab.svg') }}" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+
+
+    {% if post.images|length > 0 %}
+    <meta property="og:image" content={{ post.images[0].url }}>
+    {% else %}
+    <meta property="og:image" content="https://storage.googleapis.com/loungy-profile/logo.png">
+    {% endif %}
+
+
+    <meta property="og:url" content="http://loungy.me/post/{{ post.id }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:type" content="article">
+    <meta property="fb:app_id" content="301905626853621">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="//loungy.me/post/{{ post.id }}"><img src="{{ url_for('static', filename='logo.png')}}" srcset="{{ url_for('static', filename='logo@2x.png') }} 1000w, {{ url_for('static', filename='logo@3x.png') }} 2000w" alt=""></a></div>
+            <div class="save">
+                <a href="https://www.facebook.com/dialog/share?app_id=301905626853621&display=popup&href=https%3A%2F%2Floungy.me%2Fpost%2F{{ post.id }}&redirect_uri=https%3A%2F%2Floungy.me%2Fpost%2F{{ post.id }}"><img src="{{ url_for('static', filename='share_icon.png') }}" alt=""></a>
+            </div>
+        </div>
+    </header>
+    <hr class="below_header">
+    <main>
+        <section class="company_representative">
+            <div class="container board">
+                <div class="rep">
+                    <div>
+                        {% if post.writer.profile_images|length > 0 %}
+                        <img src="{{ post.writer.profile_images[0].url }}" alt="" id="rep_img">
+                        {% else %}
+                        <img src="https://storage.googleapis.com/loungy-profile/profile_default.png" alt="" id="rep_img">
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h5 class="reg_15_18 bold">{{ post.writer.first_name }} {{ post.writer.last_name }}</h5>
+                        <h5 class="reg_14 bold">{{ post.writer.position }}</h5>
+                        <p class="grey reg_12">{{ post.created_at|loungydate }}</p>
+                    </div>
+                </div>
+                {% if post.openchat != None %}
+                <div class="kakao">
+                    <a href="{{ post.openchat.url }}"><img src="{{ url_for('static', filename='kakao_openchat.png') }}" alt="" id="kakao_logo"></a>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+        <hr>
+        <section class="recommended_members">
+            <div class="container board">
+                <h6 class="title bold">알리고 싶은 멤버들</h6>
+                <div class="row cells" id="member_buttons">
+                    {% for target in post.target_audience %}
+                    <div class="col-xs-4 col-sm-2 col-md-2 cell">
+                        <div class="reg_13 orange"><span>{{ target.identity }}</span></div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <hr>
+        <section class="content">
+            <div class="container board">
+                <h6 class="title bold">내용</h6>
+                {{ post.text|loungytext('reg_14_15') }}
+                <!--<p class="reg_14_15">{{ post.text }}</p>-->
+            </div>
+        </section>
+
+        {% if post.images|length > 0 %}
+        <hr>
+        <section class="photos">
+            <div class="container board">
+                <h6 class="title bold">이미지</h6>
+                <div class="list_photos">
+                    <div class="row">
+                        {% for image in post.images %}
+                        <div class="col-xs-6 col-sm-4 list_photo"><img class="" src="{{ image.url }}" alt="" onclick="document.getElementById('{{ image.url }}').style.display='block'"></div>
+                        <!-- Modal -->
+                        <div id="{{ image.url }}" class="modal" onclick="document.getElementById('{{ image.url }}').style.display='none'">
+
+                            <div class="modal-content">
+                                <span class="close" onclick="document.getElementById('{{ image.url }}').style.display='none'">&times;</span>
+                                <div>
+                                    <img src="{{ image.url }}" alt="" id="popup_img">
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        {% if post.coworkers|length > 0 %}
+        <hr>
+        <section class="members_to_work_with">
+            <div class="container board">
+                <h6 class="title bold">함께 일할 멤버들({{ post.coworkers|length }})</h6>
+                <div class="members row">
+                    {% for coworker in post.coworkers %}
+                    <div class="member col-xs-4">
+                        {% if coworker.profile_images|length > 0 %}
+                        <img src="{{ coworker.profile_images[0].url }}" alt="">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='placeholder.jpg') }}" alt="">
+                        {% endif %}
+                        <h5 class="reg_14 bold">{{ coworker.position }}</h5>
+                        <h6 class="reg_12">{{ coworker.first_name }} {{ coworker.last_name }}</h6>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="view_all" id="messages_btn">
+                    <div>
+                        <div><a href="https://itunes.apple.com/app/id1182968064"><p class="reg_16">전체보기</p></a></div>
+                        <div>
+                            <a href="https://itunes.apple.com/app/id1182968064"><img src="{{ url_for('static', filename='back-arrow-r.png')}}" alt="" id="back_arrow"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        {% if replies|length > 0 %}
+        <hr>
+        <section class="comments">
+            <div class="container board">
+                <h6 class="title bold">댓글({{ replies|length }})</h6>
+                {% for reply in replies %}
+                <div class="comment">
+                    <div>
+                        <img src="{{ reply.profile.profile_image }}" alt="">
+                    </div>
+                    <div>
+                        <h5 class="reg_14 bold">{{ reply.profile.first_name }} {{ reply.profile.last_name }}</h5>
+                        <h6 class="reg_12">{{ reply.profile.job_title }}</h6>
+                        <h6 class="grey reg_12">{{ reply.created_at|loungydate }}</h6>
+                        {{ reply.text|loungytext('reg_14') }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    </main>
+    <hr>
+    <footer>
+        <div class="container">
+            <div class="inner_container">
+                <p class="reg_13">라운지 앱을 통해 더 많은 멤버들을 찾아보실 수 있습니다!</p>
+                <a href="https://itunes.apple.com/app/id1182968064"><img src="{{ url_for('static', filename='appstore.png') }}" alt=""></a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90685556-1', 'auto');
+  ga('send', 'pageview');
+    </script>
+</body>
+</html>

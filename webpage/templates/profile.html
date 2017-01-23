@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--css file-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-32x32.png') }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-16x16.png') }}" sizes="16x16">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="mask-icon" href="{{ url_for('static', filename='safari-pinned-tab.svg') }}" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+
+    {% if profile.profile_images|length > 0 %}
+    <meta property="og:image" content={{ profile.profile_images[0].url }}>
+    {% else %}
+    <meta property="og:image" content="https://storage.googleapis.com/loungy-profile/logo.png">
+    {% endif %}
+
+    <meta property="og:url" content="http://loungy.me/p/{{ profile.user_id }}">
+    <meta property="og:title" content="{{ profile.first_name }} on Loungy">
+    <meta property="og:type" content="website">
+    <meta property="fb:app_id" content="301905626853621">
+    <title>{{ profile.first_name }} on Loungy</title>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="logo"><a href="{{ profile.user_id }}"><img src="{{ url_for('static', filename='logo.png') }}" srcset="{{ url_for('static', filename='logo@2x.png') }} 1000w, {{ url_for('static', filename='logo@3x.png') }} 2000w" alt=""></a></div>
+    </div>
+</header>
+
+<hr class="below_header">
+<main>
+    <section class="profile">
+        <div class="container">
+            <div class="image_slide">
+
+                <div class="arrow"><a onclick="plusSlides(-1)"><img src="{{ url_for('static', filename='back-arrow-l.png') }}" alt=""></a></div>
+                <div>
+                    <div>
+                        {% for profile_image in profile.profile_images %}
+                        <img src="{{ profile_image.url }}" alt="" class="profileimg">
+                        {% endfor %}
+                    </div>
+                    <div class="slide_dots">
+                        {% for i in range(profile.profile_images|length) %}
+                        <span class="slide_dot" onclick="currentSlide({{ i }})"></span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="arrow"><a onclick="plusSlides(1)"><img src="{{ url_for('static', filename='back-arrow-r.png') }}" alt=""></a></div>
+            </div>
+            <div class="profile_container">
+                <p class="reg_24 bold">{{ position }}</p>
+                <p class="reg_18">{{ company }} </p>
+                <p class="reg_14">{{ profile.first_name }} {{ profile.last_name }}</p>
+
+                <div class="quote">
+                    <div><img src="{{ url_for('static', filename='quote-left.png') }}" alt=""></div>
+                    <div><p class="reg_15">{{ profile.status_message }}</p></div>
+                    <div><img src="{{ url_for('static', filename='quote-right.png') }}" alt=""></div>
+                </div>
+
+                {% if profile.languages|length != 0 %}
+
+                <div class="row inner_container flags">
+                    {% for language in profile.languages %}
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="flag">
+                            <div><img src="{{ url_for('static', filename='flags/%s.png' % language.country_code)}}" id="flag" alt=""></div>
+                            <div><a href="{{ language.audio_url }}"><img src="{{ url_for('static', filename='recorded.png')}}" id="recorded" alt=""></a></div>
+                        </div>
+                        <p class="time">{{ '%02d:%02d' % (language.duration / 60, language.duration % 60) }}</p>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+
+        </div>
+    </section>
+    <hr>
+    <section class="purpose">
+        <div class="container">
+            <h6 class="title bold">가입동기</h6>
+            <div class="inner_container">
+                {% for motive in profile.motives %}
+                <p class="reg_16">{{ motive.motive }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section class="identity">
+        <div class="container">
+            <h6 class="title bold">아이덴티티</h6>
+            <div class="row inner_container cells">
+                {% for object in profile.identities %}
+                <div class="col-xs-4 col-sm-4 col-md-4 cell">
+                    <div class="orange reg_13"><span>{{ object.identity }}</span></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section class="messages">
+        <div class="container">
+            <h6 class="title bold">좋아요 메시지({{ profile.connections|length }})</h6>
+            {% for connection in profile.connections %}
+            <div class="row inner_container">
+                <div class="col-xs-4">
+                    <img src={{ connection.profile.profile_images[0].url }} alt="">
+                </div>
+
+                <div class="col-xs-8" id="written_by">
+                    <div class="quote">
+                        <div><img src="{{ url_for('static', filename='quote-left.png')}}" alt=""></div>
+                        <div>
+                            <p class="reg_16">{{ connection.like.like_message }}</p>
+                        </div>
+                        <div><img src="{{ url_for('static', filename='quote-right.png')}}" alt=""></div>
+                    </div>
+
+                    <div><h5 class="reg_14 bold">{{ connection.profile.job_title }}</h5></div>
+                    <div><h6 class="reg_12">{{ connection.profile.first_name }} {{ connection.profile.last_name }}</h6></div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="view_all">
+                <div>
+                    <div><a href="like_messages.html"><p class="reg_16">전체보기</p></a></div>
+                    <div><a href="like_messages.html"><img src="{{ url_for('static', filename='back-arrow-r.png') }}" alt="" id="back_arrow"></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+    {% if profile.interests|length != 0 %}
+    <section class="interest">
+        <div class="container">
+            <h6 class="title bold">관심사</h6>
+            <div class="inner_container">
+                {% for object in profile.interests %}
+                <p class="reg_16">{{ object.interest }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <hr>
+    {% endif %}
+    {% if profile.skills|length != 0 %}
+    <section class="skills">
+        <div class="container">
+            <h6 class="title bold">능력</h6>
+            <div class="inner_container">
+                {% for object in profile.skills %}
+                <div>
+                    <p class="reg_15">{{ object.name }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </section>
+    <hr>
+    {% endif %}
+    <section class="experiences">
+        <div class="container">
+            <h6 class="title bold">경험</h6>
+            <div class="inner_container">
+                {% for history in profile.history %}
+                <div class="experience">
+                    <div class="left_border">
+                    </div>
+
+                    <div class="dot">
+                        <img src="{{ url_for('static', filename='oval.png')}}" alt="">
+                    </div>
+                    <div>
+                        <div class="specification">
+                            <p class="reg_12 orange">{{ history.required.period }}</p>
+                            <div>
+                                <h4 class="reg_18 bold">{{ history.required.name }}</h4>
+                                {% if history.required.position != None %}
+                                <h5 class="reg_16">{{ history.required.position }}</h5>
+                                {% endif %}
+                                {% if history.required.location != None %}
+                                <p class="reg_14">{{ history.required.location }}</p>
+                                {% endif %}
+                            </div>
+                            {% if history.hashtags|length != 0 %}
+                            <p class="tag reg_16">
+                                {% for object in history.hashtags %}
+                                <span><a href="">#{{ object.hashtag }}</a></span>
+                                {% endfor %}
+                            </p>
+                            {% endif %}
+                        </div>
+
+
+                        <!--여기에 이미지 세장이 들어갈 수 있어야 한다-->
+
+
+                        {% if history.app_links|length != 0 %}
+                        {% for app_link in history.app_links %}
+                        <hr>
+                        <div class="app">
+                            <a href={{ app_link.url }}>
+                                {% if app_link.thumbnail_url|length != 0 %}
+                                <div>
+                                    <img src={{ app_link.thumbnail_url }} alt="">
+                                </div>
+                                {% endif %}
+                                <div>
+                                    <p class="reg_13 bold">{{ app_link.seller_name }}</p>
+                                    <p class="reg_12 grey">{{ app_link.name }}</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                        {% if history.web_links|length != 0 %}
+                        {% for web_link in history.web_links %}
+                        <hr>
+                        <div class="appImage">
+                            <a href={{ web_link.url }}>
+                                {% if web_link.thumbnail_url|length != 0 %}
+                                <img src={{ web_link.thumbnail_url }} alt="">
+                                {% endif %}
+                                <p class="reg_13 bold">{{ web_link.title }}</p>
+                                <p class="reg_12 grey">{{ web_link.content }}</p>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% if profile.posts|length > 0 %}
+    <hr>
+    <section class="posts">
+
+        <div class="container">
+            <h6 class="title bold">게시물({{ profile.post_count }})</h6>
+            {% for post in profile.posts %}
+            <div class="post">
+                <p class="reg_12 bold orange">{{ post.type }}</p>
+                <p class="reg_14">{{ post.text }}</p>
+                <div>
+                    <p class="reg_12 grey date_comment"><span>{{ post.created_at }} | </span><span>댓글 {{ post.reply_count }}</span></p>
+                    <p class="reg_13 views">조회수 {{ post.read_count }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="view_all">
+                <div>
+                    <div><a href="like_boards.html"><p class="reg_16">전체보기</p></a></div>
+                    <div><a href="like_boards.html"><img src="{{ url_for('static', filename='back-arrow-r.png') }}" alt="" id="back_arrow"></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+</main>
+<hr>
+<footer>
+    <div class="container">
+        <div class="inner_container">
+            <p class="reg_13">라운지 앱을 통해 더 많은 멤버들을 찾아보실 수 있습니다!</p>
+            <a href="https://itunes.apple.com/app/id1182968064"><img src="{{ url_for('static', filename='appstore.png') }}" alt=""></a>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!--js file-->
+<script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+          var i;
+          var profileImages = document.getElementsByClassName("profileimg");
+          var slide_dots = document.getElementsByClassName("slide_dot");
+          if (n > profileImages.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = profileImages.length}
+          for (i = 0; i < profileImages.length; i++) {
+              profileImages[i].style.display = "none";
+          }
+          for (i = 0; i < slide_dots.length; i++) {
+              slide_dots[i].className = slide_dots[i].className.replace(" active", "");
+
+          }
+          profileImages[slideIndex-1].style.display = "block";
+          slide_dots[slideIndex-1].className += " active";
+        }
+    </script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-90685556-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

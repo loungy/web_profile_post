@@ -1,0 +1,47 @@
+[
+  {
+    "profile": {
+      "first_name": "Mc",
+      "last_name": "Joo",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/902cdf98-de0e-11e6-b137-0242ac110004.jpg",
+      "id": "8fdfa5d4-de0e-11e6-b137-0242ac110004",
+      "job_title": "Founder"
+    },
+    "post_id": 5,
+    "text": "wow",
+    "created_at": 1484892086116,
+    "updated_at": 1484892086116,
+    "writer_id": "8fdfa5d4-de0e-11e6-b137-0242ac110004",
+    "id": 21
+  },
+  {
+    "profile": {
+      "first_name": "Mc",
+      "last_name": "Joo",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/902cdf98-de0e-11e6-b137-0242ac110004.jpg",
+      "id": "8fdfa5d4-de0e-11e6-b137-0242ac110004",
+      "job_title": "Founder"
+    },
+    "post_id": 5,
+    "text": "wow",
+    "created_at": 1484892102588,
+    "updated_at": 1484892102588,
+    "writer_id": "8fdfa5d4-de0e-11e6-b137-0242ac110004",
+    "id": 22
+  },
+  {
+    "profile": {
+      "first_name": "Suyeun",
+      "last_name": "Kim",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/475b05a0-db03-11e6-a5d4-0242ac110004.jpg",
+      "id": "225507b8-db00-11e6-a5d4-0242ac110004",
+      "job_title": "UX Designer"
+    },
+    "post_id": 5,
+    "text": "\uba4b\uc9c4 \ubd84\ub4e4 \ub9ce\uc774 \ucd94\ucc9c\ud574 \uc8fc\uc138\uc694~",
+    "created_at": 1484893731792,
+    "updated_at": 1484893731792,
+    "writer_id": "225507b8-db00-11e6-a5d4-0242ac110004",
+    "id": 24
+  }
+]

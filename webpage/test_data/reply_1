@@ -1,0 +1,197 @@
+[
+  {
+    "profile": {
+      "first_name": "\ud615\ucca0",
+      "last_name": "\uae40",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/187c1bdc-db00-11e6-a5d4-0242ac110004.jpg",
+      "id": "18349f5a-db00-11e6-a5d4-0242ac110004",
+      "job_title": "\ucf54\ud30c\uc6b4\ub354\/\uac1c\ubc1c\uc790"
+    },
+    "post_id": 1,
+    "text": "\ud53c\ub4dc\ubc31 \ud658\uc601\ud569\ub2c8\ub2e4!! ",
+    "created_at": 1484642606072,
+    "updated_at": 1484642606072,
+    "writer_id": "18349f5a-db00-11e6-a5d4-0242ac110004",
+    "id": 1
+  },
+  {
+    "profile": {
+      "first_name": "Suyeun",
+      "last_name": "Kim",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/475b05a0-db03-11e6-a5d4-0242ac110004.jpg",
+      "id": "225507b8-db00-11e6-a5d4-0242ac110004",
+      "job_title": "UX Designer"
+    },
+    "post_id": 1,
+    "text": "\uc758\uacac \ub9ce\uc774\ub9ce\uc774 \uc8fc\uc138\uc694!",
+    "created_at": 1484801173038,
+    "updated_at": 1484801173038,
+    "writer_id": "225507b8-db00-11e6-a5d4-0242ac110004",
+    "id": 3
+  },
+  {
+    "profile": {
+      "first_name": "Sol",
+      "last_name": "Lee",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/d0dadf9a-ddff-11e6-9b21-0242ac110004.jpg",
+      "id": "d05d6b8c-ddff-11e6-9b21-0242ac110004",
+      "job_title": "UI\/UX Designer"
+    },
+    "post_id": 1,
+    "text": "\ub7f0\uce6d \ucd95\ud558\ub4dc\ub9bd\ub2c8\ub2e4 \ud83d\ude4a",
+    "created_at": 1484801728926,
+    "updated_at": 1484801728926,
+    "writer_id": "d05d6b8c-ddff-11e6-9b21-0242ac110004",
+    "id": 4
+  },
+  {
+    "profile": {
+      "first_name": "\ud589\ub9bc",
+      "last_name": "\ub9c8",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/5c73aa7c-de01-11e6-9b21-0242ac110004.jpg",
+      "id": "19e85000-de00-11e6-9b21-0242ac110004",
+      "job_title": "UI\/UX \ub514\uc790\uc774\ub108"
+    },
+    "post_id": 1,
+    "text": "\ud83c\udfb6\ucd95\ud558\ub4dc\ub9bd\ub2c8\ub2e4\ud83c\udfb6",
+    "created_at": 1484801791126,
+    "updated_at": 1484801791126,
+    "writer_id": "19e85000-de00-11e6-9b21-0242ac110004",
+    "id": 5
+  },
+  {
+    "profile": {
+      "first_name": "Mintak",
+      "last_name": "Son",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/4c0076d4-de0b-11e6-b137-0242ac110004.jpg",
+      "id": "4ba7fa22-de0b-11e6-b137-0242ac110004",
+      "job_title": "iOS Developer"
+    },
+    "post_id": 1,
+    "text": "Loungy displays a bunch of information in very simple look! Congratulations HC and Whitney :)",
+    "created_at": 1484805400450,
+    "updated_at": 1484805400450,
+    "writer_id": "4ba7fa22-de0b-11e6-b137-0242ac110004",
+    "id": 6
+  },
+  {
+    "profile": {
+      "first_name": "Mc",
+      "last_name": "Joo",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/902cdf98-de0e-11e6-b137-0242ac110004.jpg",
+      "id": "8fdfa5d4-de0e-11e6-b137-0242ac110004",
+      "job_title": "Founder"
+    },
+    "post_id": 1,
+    "text": "\ucd95\ud559\ucd95\ud558",
+    "created_at": 1484806755822,
+    "updated_at": 1484806755822,
+    "writer_id": "8fdfa5d4-de0e-11e6-b137-0242ac110004",
+    "id": 7
+  },
+  {
+    "profile": {
+      "first_name": "Suyeun",
+      "last_name": "Kim",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/475b05a0-db03-11e6-a5d4-0242ac110004.jpg",
+      "id": "225507b8-db00-11e6-a5d4-0242ac110004",
+      "job_title": "UX Designer"
+    },
+    "post_id": 1,
+    "text": "\uac10\uc0e4\ud569\ub2c8\ub2e4~~~",
+    "created_at": 1484810774869,
+    "updated_at": 1484810774869,
+    "writer_id": "225507b8-db00-11e6-a5d4-0242ac110004",
+    "id": 8
+  },
+  {
+    "profile": {
+      "first_name": "Yoonzung",
+      "last_name": "An",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/7ea53e50-de27-11e6-b137-0242ac110004.jpg",
+      "id": "7e560ba0-de27-11e6-b137-0242ac110004",
+      "job_title": "ui\/ux designer"
+    },
+    "post_id": 1,
+    "text": "\uc624\ud508 \uc9c4\uc2ec\uc73c\ub85c \ucd95\ud558\ud574\uc694!!\ub300\ubc15\ub098\uae38!!!",
+    "created_at": 1484817518909,
+    "updated_at": 1484817518909,
+    "writer_id": "7e560ba0-de27-11e6-b137-0242ac110004",
+    "id": 9
+  },
+  {
+    "profile": {
+      "first_name": "\uc0c1\ud638",
+      "last_name": "\uc774",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/952231c0-de3a-11e6-b137-0242ac110004.jpg",
+      "id": "94c8cf86-de3a-11e6-b137-0242ac110004",
+      "job_title": "\uac1c\ubc1c\uc790"
+    },
+    "post_id": 1,
+    "text": "\ucd95\ud558\ub4dc\ub9bd\ub2c8\ub2e4~~ ",
+    "created_at": 1484825761658,
+    "updated_at": 1484825761658,
+    "writer_id": "94c8cf86-de3a-11e6-b137-0242ac110004",
+    "id": 10
+  },
+  {
+    "profile": {
+      "first_name": "Gemma",
+      "last_name": "Lim",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/ffbf91a8-deb7-11e6-baf8-0242ac110004.jpg",
+      "id": "892940da-deb6-11e6-baf8-0242ac110004",
+      "job_title": "SNOW"
+    },
+    "post_id": 1,
+    "text": "\ucd95\ud558\ub4dc\ub824\uc694 \ud83d\ude4f\ud83c\udffb\ud83c\udf1f",
+    "created_at": 1484879395591,
+    "updated_at": 1484879395591,
+    "writer_id": "892940da-deb6-11e6-baf8-0242ac110004",
+    "id": 17
+  },
+  {
+    "profile": {
+      "first_name": "Seung Il",
+      "last_name": "Hong",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/d9a7e726-deb3-11e6-baf8-0242ac110004.jpg",
+      "id": "d909bae2-deb3-11e6-baf8-0242ac110004",
+      "job_title": "IT Director"
+    },
+    "post_id": 1,
+    "text": "\ucd95\ud558\ub4dc\ub824\uc694 \uc5ed\uc2dc \uba4b\uc9c0\ub124\uc694 \u314e\u314e\u314e",
+    "created_at": 1484889423750,
+    "updated_at": 1484889423750,
+    "writer_id": "d909bae2-deb3-11e6-baf8-0242ac110004",
+    "id": 20
+  },
+  {
+    "profile": {
+      "first_name": "Scott SangHyuk",
+      "last_name": "Lee",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/c6eaf0ac-ded5-11e6-baf8-0242ac110004.jpg",
+      "id": "c67f27aa-ded5-11e6-baf8-0242ac110004",
+      "job_title": "Co-Founder"
+    },
+    "post_id": 1,
+    "text": "\ub300\ubc15\ub098\uc138\uc694",
+    "created_at": 1484892555222,
+    "updated_at": 1484892555222,
+    "writer_id": "c67f27aa-ded5-11e6-baf8-0242ac110004",
+    "id": 23
+  },
+  {
+    "profile": {
+      "first_name": "Jonghyuk",
+      "last_name": "Jung",
+      "profile_image": "https:\/\/storage.googleapis.com\/loungy-profile\/92c1bc18-dfb4-11e6-ae1c-0242ac110004.jpg",
+      "id": "9ccf40be-de55-11e6-b137-0242ac110004",
+      "job_title": "Designer & Front-end Developer"
+    },
+    "post_id": 1,
+    "text": "\uba4b\uc788\uc5b4\uc694!!",
+    "created_at": 1484960932369,
+    "updated_at": 1484960932369,
+    "writer_id": "9ccf40be-de55-11e6-b137-0242ac110004",
+    "id": 25
+  }
+]
