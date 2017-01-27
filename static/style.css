@@ -1,11 +1,5 @@
-@font-face{
-    font-family: Noto_Reg;
-    src: url(font/Noto-unhinted/NotoSansCJKkr-Regular.otf);
-}
-@font-face{
-    font-family: Noto_Bold;
-    src:url(font/Noto-unhinted/NotoSansCJKkr-Medium.otf);
-}
+
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 @media screen and (max-width: 720px){
     .reg_15_18{
@@ -164,7 +158,7 @@
   box-sizing:border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  font-family: "Noto_Reg";
+    font-family:  'Noto Sans KR', "Noto Sans", sans-serif;
 }
 
 /*공통*/
@@ -188,7 +182,7 @@ hr{
     font-size: 1.3em;
     margin-bottom: 1.8em;
 }
-.bold{font-family: "Noto_Bold";}
+.bold{font-weight: 500;}
 .reg_24{font-size: 2.4em;}
 .reg_20{font-size: 2em;}
 .reg_18{font-size: 1.8em;}
