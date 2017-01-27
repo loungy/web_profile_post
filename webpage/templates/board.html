@@ -10,6 +10,10 @@
     <!--css file-->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
 
+    <!--hammer js for mobile-->
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+
+
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-32x32.png') }}" sizes="32x32">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-16x16.png') }}" sizes="16x16">
@@ -96,7 +100,9 @@
                 <div class="list_photos">
                     <div class="row">
                         {% for image in post.images %}
-                        <div class="col-xs-6 col-sm-4 list_photo"><img class="" src="{{ image.url }}" alt="" onclick="document.getElementById('{{ image.url }}').style.display='block'"></div>
+                        <div class="col-xs-6 col-sm-3 col-md-3">
+                        <div class="list_photo"><img class="" src="{{ image.url }}" alt="" onclick="document.getElementById('{{ image.url }}').style.display='block'"></div>
+                        </div>
                         <!-- Modal -->
                         <div id="{{ image.url }}" class="modal" onclick="document.getElementById('{{ image.url }}').style.display='none'">
 
@@ -108,6 +114,8 @@
                             </div>
                         </div>
                         {% endfor %}
+
+
                     </div>
                 </div>
             </div>
@@ -120,7 +128,8 @@
                 <h6 class="title bold">함께 일할 멤버들({{ post.coworkers|length }})</h6>
                 <div class="members row">
                     {% for coworker in post.coworkers %}
-                    <div class="member col-xs-4">
+                    <div class="col-xs-4 col-sm-2 col-md-2">
+                        <div class="member">
                         {% if coworker.profile_images|length > 0 %}
                         <img src="{{ coworker.profile_images[0].url }}" alt="">
                         {% else %}
@@ -128,8 +137,11 @@
                         {% endif %}
                         <h5 class="reg_14 bold">{{ coworker.position }}</h5>
                         <h6 class="reg_12">{{ coworker.first_name }} {{ coworker.last_name }}</h6>
+                        </div>
                     </div>
                     {% endfor %}
+
+
                 </div>
                 <div class="view_all" id="messages_btn">
                     <div>

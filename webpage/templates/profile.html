@@ -8,7 +8,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--css file-->
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
+
+
+    <!--hammer js for mobile-->
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+
+
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-32x32.png') }}" sizes="32x32">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon-16x16.png') }}" sizes="16x16">
@@ -26,6 +33,7 @@
     <meta property="og:title" content="{{ profile.first_name }} on Loungy">
     <meta property="og:type" content="website">
     <meta property="fb:app_id" content="301905626853621">
+
     <title>{{ profile.first_name }} on Loungy</title>
 </head>
 <body>
@@ -37,15 +45,15 @@
 
 <hr class="below_header">
 <main>
-    <section class="profile">
+    <section class="profile" >
         <div class="container">
             <div class="image_slide">
 
                 <div class="arrow"><a onclick="plusSlides(-1)"><img src="{{ url_for('static', filename='back-arrow-l.png') }}" alt=""></a></div>
                 <div>
-                    <div>
+                    <div class="profileimg_container">
                         {% for profile_image in profile.profile_images %}
-                        <img src="{{ profile_image.url }}" alt="" class="profileimg">
+                        <img src="{{ profile_image.url }}" alt="" class="profileimg" id="profileimg">
                         {% endfor %}
                     </div>
                     <div class="slide_dots">
@@ -69,16 +77,20 @@
 
                 {% if profile.languages|length != 0 %}
 
-                <div class="row inner_container flags">
+                <div class="inner_container flags">
+                    <div class="row">
                     {% for language in profile.languages %}
-                    <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="flag">
-                            <div><img src="{{ url_for('static', filename='flags/%s.png' % language.country_code)}}" id="flag" alt=""></div>
-                            <div><a href="{{ language.audio_url }}"><img src="{{ url_for('static', filename='recorded.png')}}" id="recorded" alt=""></a></div>
+                            <div>
+                                <div><img src="{{ url_for('static', filename='flags/%s.png' % language.country_code)}}" id="flag" alt=""></div>
+                                <div><a href="{{ language.audio_url }}"><img src="{{ url_for('static', filename='recorded.png')}}" id="recorded" alt=""></a></div>
+                            </div>
+                            <p class="time">{{ '%02d:%02d' % (language.duration / 60, language.duration % 60) }}</p>
                         </div>
-                        <p class="time">{{ '%02d:%02d' % (language.duration / 60, language.duration % 60) }}</p>
-                    </div>
                     {% endfor %}
+
+
+                    </div>
                 {% endif %}
 
             </div>
@@ -101,11 +113,15 @@
         <div class="container">
             <h6 class="title bold">아이덴티티</h6>
             <div class="row inner_container cells">
-                {% for object in profile.identities %}
-                <div class="col-xs-4 col-sm-4 col-md-4 cell">
+
+
+            {% for object in profile.identities %}
+                <div class="cell">
                     <div class="orange reg_13"><span>{{ object.identity }}</span></div>
                 </div>
-                {% endfor %}
+            {% endfor %}
+
+
             </div>
         </div>
     </section>
@@ -165,6 +181,11 @@
                 <div>
                     <p class="reg_15">{{ object.name }}</p>
                 </div>
+                <div class="skillbar">
+                    <div class="innerbar">
+                        <div class="barvalue">0.2</div>
+                    </div>
+                </div>
                 {% endfor %}
             </div>
         </div>
@@ -176,15 +197,22 @@
         <div class="container">
             <h6 class="title bold">경험</h6>
             <div class="inner_container">
+
                 {% for history in profile.history %}
                 <div class="experience">
-                    <div class="left_border">
+                    <div class="vertical-line">
+                    </div>
+                    <div class="row">
+
+
+                    <div class="col-xs-2" >
+
+                        <div class="dot">
+                            <img src="{{ url_for('static', filename='oval.png')}}" alt="">
+                        </div>
                     </div>
 
-                    <div class="dot">
-                        <img src="{{ url_for('static', filename='oval.png')}}" alt="">
-                    </div>
-                    <div>
+                    <div class="details col-xs-10">
                         <div class="specification">
                             <p class="reg_12 orange">{{ history.required.period }}</p>
                             <div>
@@ -207,6 +235,44 @@
 
 
                         <!--여기에 이미지 세장이 들어갈 수 있어야 한다-->
+
+                        {% if history.web_links|length != 0 %}
+                        {% for web_link in history.web_links %}
+                        <hr>
+                        <div class="multi-images">
+                            <div class="row">
+
+                                {% if web_link.thumbnail_url|length != 0 %}
+                                <div class="col-xs-4">
+                                    <div><img src={{ web_link.thumbnail_url }} alt=""></div>
+                                </div>
+                                {% endif %}
+
+                                {% if web_link.thumbnail_url|length != 0 %}
+                                <div class="col-xs-4">
+                                    <div><img src={{ web_link.thumbnail_url }} alt=""></div>
+                                </div>
+                                {% endif %}
+                                {% if web_link.thumbnail_url|length != 0 %}
+                                <div class="col-xs-4">
+                                    <div><img src={{ web_link.thumbnail_url }} alt=""></div>
+                                </div>
+                                {% endif %}
+                                {% if web_link.thumbnail_url|length != 0 %}
+                                <div class="col-xs-4">
+                                    <div><img src={{ web_link.thumbnail_url }} alt=""></div>
+                                </div>
+                                {% endif %}
+
+
+
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+
 
 
                         {% if history.app_links|length != 0 %}
@@ -231,17 +297,22 @@
                         {% if history.web_links|length != 0 %}
                         {% for web_link in history.web_links %}
                         <hr>
-                        <div class="appImage">
+                        <div class="web">
                             <a href={{ web_link.url }}>
+
                                 {% if web_link.thumbnail_url|length != 0 %}
-                                <img src={{ web_link.thumbnail_url }} alt="">
+                                <div><img src={{ web_link.thumbnail_url }} alt=""></div>
                                 {% endif %}
+
                                 <p class="reg_13 bold">{{ web_link.title }}</p>
                                 <p class="reg_12 grey">{{ web_link.content }}</p>
+
                             </a>
+
                         </div>
                         {% endfor %}
                         {% endif %}
+                    </div>
                     </div>
                 </div>
                 {% endfor %}
@@ -295,11 +366,14 @@
         showSlides(slideIndex);
 
         function plusSlides(n) {
-          showSlides(slideIndex += n);
+            slideIndex+=n;
+          // showSlides(slideIndex += n);
+          showSlides(slideIndex);
         }
 
         function currentSlide(n) {
-          showSlides(slideIndex = n);
+            slideIndex=n;
+          showSlides(slideIndex);
         }
 
         function showSlides(n) {
@@ -318,6 +392,63 @@
           profileImages[slideIndex-1].style.display = "block";
           slide_dots[slideIndex-1].className += " active";
         }
+
+        //swipe profile image
+
+        var myElement = document.getElementsByClassName("profileimg");
+
+        // create a simple instance
+        // by default, it only adds horizontal recognizers
+        for(var i=0;i<myElement.length;i++){
+             var mc = new Hammer(myElement[i]);
+             mc.on("swipeleft", function(ev) {
+                plusSlides(1);
+            });
+            mc.on("swiperight", function(ev) {
+                plusSlides(-1);
+            });
+
+        }
+
+
+
+        // skillbar
+        var innerbar = document.getElementsByClassName("innerbar");
+        var start_width = document.getElementsByClassName("barvalue");
+
+        function setWidth(innerbar, start_width){
+
+            for(var i=0;i<innerbar.length; i++)
+            {
+
+              var start_width_percentage =  parseFloat(start_width[i].innerHTML)*100;
+              innerbar[i].style.width = start_width_percentage.toString()+"%";
+            }
+        }
+
+        setWidth(innerbar,start_width);
+
+
+        //identity cells
+        var cells = document.getElementsByClassName("cell");
+
+        if(cells.length>2){
+            for(var i=0;i<cells.length;i++){
+                cells[i].className += " col-xs-4";
+            }
+        }
+
+        //flags
+        var flags = document.getElementsByClassName("flag");
+        if(flags.length>2){
+            for(var i=0;i<flags.length;i++){
+                flags[i].className += " col-xs-4";
+            }
+        }
+
+
+
+
     </script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
